@@ -73,7 +73,7 @@ function povoarCarrinho() {
 						<p>Total geral:</p>\
 						<p id="total">R$'+preco_total.toFixed(2).toString().replace('.', ',')+'</p><br>\
 						<button type="button">Finalizar</button>\
-					</div>';;
+					</div>';
 			}
 		};
 	};
