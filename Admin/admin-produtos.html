@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+
+<!--Tela com as ações: cadastrar administrador, clientes, produtos, serviços, etc.--> 
+
+<html>
+
+	<head>
+		<title>Pet Shop</title>
+		<link rel="stylesheet" href="admin.css" type="text/css">
+		<meta name="description" content="A página com as ações disponíveis ao administrador de um pet shop chamado Pet Shop"/>
+		<meta charset="utf-8"/><!--utilizado para os caraceters acentuados-->
+	</head>
+
+
+
+	<body>
+		<div id="page">
+			<div id="logo">
+				<img src="rsz_logo.jpg" alt="Logo do pet shop Pet Shop" style="width:160px">
+			</div>
+
+			<nav>
+				<ul class="menu"><!--as abas da página não funcionam-->
+				    <li><a href="admin-cadastrar.html"> Cadastrar</a></li>
+				   	<li><a href="admin-servicos.html"> Gerenciar Serviços</a></li>
+				   	<li><a href="admin-produtos.html"> Gerenciar Produtos</a></li>
+
+				</ul>
+			</nav>
+
+			<div class="tab-folder">
+
+
+				<div id="gerencia" class="tab-content">
+					<nav>
+						<ul class="menu"><!--as abas da página-->
+				    		<li><a href="#atualizar_prod">Atualizar</a></li>
+				    		<li><a href="#apagar_prod">Apagar</a></li>
+				    		<li><a href="#consultar_prod">Consultar</a></li>
+						</ul>
+					</nav>
+
+					<div class="sub-tab-folder">
+
+						<div id="consultar_prod" class="sub-tab-content">
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-golden.jpg" alt="Ração Golden" style="width:160px;height:160px">
+									<p>Ração Golden 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>2</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>19,90</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>4351</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>45</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/osso.jpg" alt="Ossinho de couro" style="width:160px;height:160px">
+									<p>Ossinho de couro</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>15</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>1,10</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1206</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>7</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/coleira-vermelha.jpg" alt="Coleira vermelha" style="width:160px;height:160px">
+									<p>Coleira vermelha</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>10</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>7,50</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1058</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>9</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-pedigree.jpg" alt="Ração Pedigree" style="width:160px;height:160px">
+									<p>Ração Pedigree 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>30</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>21,30</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1957</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>13</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-champ.jpg" alt="Ração Champ" 
+									style="width:160px;height:160px">
+									<p>Ração Champ 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>37</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>15,50</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1058</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>17</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-magnus.jpg" alt="Ração Magnus" 
+									style="width:160px;height:160px">
+									<p>Ração Magnus 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>40</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>21,90</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1058</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>6</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-quatree.jpg" alt="Ração Quatree" 
+									style="width:160px;height:160px">
+									<p>Ração Quatree 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>23</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>21,90</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1049</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>9</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-whiskas.jpg" alt="Ração Whiskas" 
+									style="width:160px;height:160px">
+									<p>Ração Whiskas 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>45</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>18,90</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>1643</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>13</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/racao-granplus.jpg" alt="Ração Gran Plus"
+									style="width:160px;height:160px">
+									<p>Ração Gran Plus 1 Kg</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>23</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>20,90</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>6272</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>8</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/osso.jpg" alt="Ossinho de couro"
+									style="width:160px;height:160px">
+									<p>Ossinho de couro</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>50</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>1,10</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>2057</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>37</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/coleira-vermelha.jpg" alt="Coleira vermelha"
+									style="width:160px;height:160px">
+									<p>Coleira vermelha</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>27</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>7,50</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>3964</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>5</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/coleira-preta.jpg" alt="Coleira preta"
+									style="width:160px;height:160px">
+									<p>Coleira preta</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>29</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>8,20</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>3058</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>6</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/bifinho-carne.jpg" alt="Bifinho de carne"
+									style="width:160px;height:160px">
+									<p>Bifinho de carne</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>70</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>4,40</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>8532</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>47</p>
+								</div>
+							</div>
+							<br>
+							<div class="produto-carrinho">
+								<div class="produto">
+									<img src="Produtos/bifinho-frango.jpg" alt="Bifinho de frango"
+									style="width:160px;height:160px">
+									<p>Bifinho de frango</p>
+								</div>
+								<div class="quantidade">
+									<p>Quantidade em estoque:</p>
+									<p>66</p>
+								</div>
+								<div class="quantidade">
+									<p>Preço unitário:</p>
+									<p>4,20</p>
+								</div>
+								<div class="quantidade">
+									<p>ID:</p>
+									<p>2867</p>
+								</div>
+								<div class="quantidade">
+									<p>Vendidos:</p>
+									<p>55</p>
+								</div>
+							</div>
+							<br>	
+						</div>
+
+						<div id="apagar_prod" class="sub-tab-content">
+							<form>
+								<div class="formulario">
+									<div class="formulario">
+										<p>ID do produto:</p>
+										<input type="number" name="id">
+									</div>
+									<div class="formulario">
+										<input type="submit" value="Apagar">
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div id="atualizar_prod" class="sub-tab-content">
+							<form>
+								<div class="formulario">
+									<div class="formulario">
+										<p>ID do produto:</p>
+										<input type="number" name="id">
+									</div>
+									<div class="formulario">
+										<p>Editar nome do produto:</p>
+										<input type="text" name="nome">
+									</div>
+									<div class="formulario">
+										<p>Editar foto:</p>
+										<input type="file" name="foto" accept="image/*">
+									</div>
+									<div class="formulario">
+										<p>Editar descrição:</p>
+										<input type="text" name="descricao">
+									</div>
+									<div class="formulario">
+										<p>Editar preço:</p>
+										<input type="number" name="preco">
+									</div>
+									<div class="formulario">
+										<p>Editar quantidade:</p>
+										<input type="number" name="quantidade">
+									</div>
+									<div class="formulario">
+										<p>Editar vendidos:</p>
+										<input type="number" name="vendidos">
+									</div>
+									<div class="formulario">
+										<input type="submit" value="Atualizar">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+	</body>
+
+
+
+	<footer>
+		<div id="rodape">
+			<p>Contato</p>
+		</div>
+	</footer>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

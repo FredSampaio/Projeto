@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+
+<!--Tela com as ações: agendar horário, comprar produto, editar seu registro, cadastrar/listar animais --> 
+
+<html>
+	<head>
+	    <title>Pet Shop</title>
+		<link rel="stylesheet" href="admin.css" type="text/css">
+		<meta name="description" content="A página com as ações disponíveis ao usuário de um pet shop chamado Pet Shop"/>
+		<meta charset="utf-8"/><!--utilizado para os caraceters acentuados-->
+	</head>
+	<body>
+		<div id="page">
+			<div id="logo">
+				<img src="rsz_logo.jpg" alt="Logo do pet shop Pet Shop" style="width:160px">
+			</div>
+			<nav>
+				<ul id="menu"><!--as abas da página não funcionam-->
+				    <li><a href="admin-cadastrar.html"> Cadastrar</a></li>
+				   	<li><a href="admin-servicos.html"> Gerenciar Serviços</a></li>
+				   	<li><a href="admin-produtos.html"> Gerenciar Produtos</a></li>
+				</ul>
+			</nav>
+			<div class="tab-folder">
+				<div id="gerenciamento" class="tab-content">
+					<form>
+						<div class="formulario">
+							<div class="formulario">
+								<p>Escolha a data a ser consultada:</p>
+								<input type="date" name="data_servico">
+							</div>
+							<div class="formulario">
+								<input type="submit" value="Consultar">
+							</div>
+						</div>
+					</form>
+					<div class="formulario">
+					<table height="114" cellpadding="10" cellspacing="0" >
+                    <tr>
+                      <td><strong>Horario</strong></td>
+                      <td><strong>17/04/2017</strong></td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>8:00</td>
+                      <td>Banho - Pantera </td>
+                      <td><input type="button" class="button" name="liberar-8" value="Liberar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>9:00</td>
+                      <td><select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							<select name="animal">
+									<option value="fifi">Fifi</option>
+									<option value="rex">Rex</option>
+									<option value="pantera">Pantera</option>
+									<option value="haroldo">Haroldo</option>
+								</select>	</td>
+                      <td><input type="button" class="button" name="liberar-9" value="Agendar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>10:00</td>
+                      <td>Tosa - Fifi </td>
+                      <td><input type="button" class="button" name="liberar-10" value="Liberar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>11:00</td>
+                      <td><select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							<select name="animal">
+									<option value="fifi">Fifi</option>
+									<option value="rex">Rex</option>
+									<option value="pantera">Pantera</option>
+									<option value="haroldo">Haroldo</option>
+								</select>	</td>
+                      <td><input type="button" class="button" name="liberar-11" value="Agendar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>12:00</td>
+                      <td><select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							<select name="animal">
+									<option value="fifi">Fifi</option>
+									<option value="rex">Rex</option>
+									<option value="pantera">Pantera</option>
+									<option value="haroldo">Haroldo</option>
+								</select>	</td>
+                      <td><input type="button" class="button" name="liberar-8" value="Agendar Horário"></td>
+                    </tr>
+                   <tr>
+                      <td>13:00</td>
+                      <td> Consulta - Rex </td>
+                      <td><input type="button" class="button" name="liberar-12" value="Liberar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>14:00</td>
+                      <td> Banho - Rex </td>
+                      <td><input type="button" class="button" name="liberar-13" value="Liberar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>15:00</td>
+                      <td><select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							<select name="animal">
+									<option value="fifi">Fifi</option>
+									<option value="rex">Rex</option>
+									<option value="pantera">Pantera</option>
+									<option value="haroldo">Haroldo</option>
+								</select>	</td> 
+                      <td><input type="button" class="button" name="liberar-14" value="Agendar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>16:00</td>
+                      <td><select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							<select name="animal">
+									<option value="fifi">Fifi</option>
+									<option value="rex">Rex</option>
+									<option value="pantera">Pantera</option>
+									<option value="haroldo">Haroldo</option>
+								</select>	</td>
+                      <td><input type="button" class="button" name="liberar-15" value="Agendar Horário"></td>
+                    </tr>
+                    <tr>
+                      <td>17:00</td>
+                      <td><select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							<select name="animal">
+									<option value="fifi">Fifi</option>
+									<option value="rex">Rex</option>
+									<option value="pantera">Pantera</option>
+									<option value="haroldo">Haroldo</option>
+								</select>	</td>
+                      <td><input type="button" class="button" name="liberar-16" value="Agendar Horário"></td>
+                    </tr>
+				</table>
+						</div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<footer>
+		<div id="rodape">
+			<p>Contato</p>
+		</div>
+	</footer>
+</html>

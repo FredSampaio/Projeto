@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<!--Tela com as ações: cadastrar administrador, clientes, produtos, serviços, etc.--> 
+
+<html>
+
+	<head>
+		<title>Pet Shop</title>
+		<link rel="stylesheet" href="admin.css" type="text/css">
+		<meta name="description" content="A página com as ações disponíveis ao administrador de um pet shop chamado Pet Shop"/>
+		<meta charset="utf-8"/><!--utilizado para os caraceters acentuados-->
+	</head>
+
+
+
+	<body>
+		<div id="page">
+			<div id="logo">
+				<img src="rsz_logo.jpg" alt="Logo do pet shop Pet Shop" style="width:160px">
+			</div>
+
+			<nav>
+				<ul class="menu"><!--as abas da página não funcionam-->
+				    <li><a href="admin-cadastrar.html"> Cadastrar</a></li>
+				   	<li><a href="admin-servicos.html"> Gerenciar Serviços</a></li>
+				   	<li><a href="admin-produtos.html"> Gerenciar Produtos</a></li>
+
+				</ul>
+			</nav>
+
+			<div class="tab-folder">
+
+
+				<div id="cadastro" class="tab-content">
+					<nav>
+						<ul class="menu"><!--as abas da página-->
+				    		<li><a href="#cadastar_admin">Administrador</a></li>
+				    		<li><a href="#cadastrar_cli">Cliente</a></li>
+				    		<li><a href="#cadastrar_prod">Produto</a></li>
+				    		<li><a href="#cadastrar_serv">Serviço</a></li>
+						</ul>
+					</nav>
+
+					<div class="sub-tab-folder">
+
+						<div id="cadastrar_serv" class="sub-tab-content">
+							<form>
+								<div class="formulario">
+									<div class="formulario">
+										<p>Nome do serviço:</p>
+										<input type="text" name="nome">
+									</div>
+									<div class="formulario">
+										<p>ID:</p>
+										<input type="number" name="id">
+									</div>
+									<div class="formulario">
+										<p>Foto:</p>
+										<input type="file" name="foto" accept="image/*">
+									</div>
+									<div class="formulario">
+										<p>Descrição do serviço:</p>
+										<input type="text" name="descricao">
+									</div>
+									<div class="formulario">
+										<p>Preço:</p>
+										<input type="number" name="preco">
+									</div>
+									<div class="formulario">
+										<input type="submit" value="Cadastrar">
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div id="cadastrar_prod" class="sub-tab-content">
+							<form>
+								<div class="formulario">
+									<div class="formulario">
+										<p>Nome do produto:</p>
+										<input type="text" name="nome">
+									</div>
+									<div class="formulario">
+										<p>ID:</p>
+										<input type="number" name="id">
+									</div>
+									<div class="formulario">
+										<p>Foto:</p>
+										<input type="file" name="foto" accept="image/*">
+									</div>
+									<div class="formulario">
+										<p>Descrição do produto:</p>
+										<input type="text" name="descricao">
+									</div>
+									<div class="formulario">
+										<p>Preço:</p>
+										<input type="number" name="preco">
+									</div>
+									<div class="formulario">
+										<p>Quantidade:</p>
+										<input type="number" name="quantidade">
+									</div>
+									<div class="formulario">
+										<p>Vendidos:</p>
+										<input type="number" name="vendidos">
+									</div>
+									<div class="formulario">
+										<input type="submit" value="Cadastrar">
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div id="cadastrar_cli" class="sub-tab-content">
+							<form>
+								<div class="formulario">
+									<div class="formulario">
+										<p>Nome do cliente:</p>
+										<input type="text" name="nome">
+									</div>
+									<div class="formulario">
+										<p>ID:</p>
+										<input type="number" name="id">
+									</div>
+									<div class="formulario">
+										<p>Endereço:</p>
+										<input type="text" name="endereco">
+									</div>
+									<div class="formulario">
+										<p>Foto:</p>
+										<input type="file" name="foto" accept="image/*">
+									</div>
+									<div class="formulario">
+										<p>Telefone:</p>
+										<input type="tel" name="telefone">
+									</div>
+									<div class="formulario">
+										<p>Email:</p>
+										<input type="email" name="email">
+									</div>
+									<div class="formulario">
+										<input type="submit" value="Cadastrar">
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div id="cadastrar_admin" class="sub-tab-content">
+							<form>
+								<div class="formulario">
+									<div class="formulario">
+										<p>Nome do administrador:</p>
+										<input type="text" name="nome">
+									</div>
+									<div class="formulario">
+										<p>ID:</p>
+										<input type="number" name="id">
+									</div>
+									<div class="formulario">
+										<p>Foto:</p>
+										<input type="file" name="foto" accept="image/*">
+									</div>
+									<div class="formulario">
+										<p>Telefone:</p>
+										<input type="tel" name="telefone">
+									</div>
+									<div class="formulario">
+										<p>Email:</p>
+										<input type="email" name="email">
+									</div>
+									<div class="formulario">
+										<input type="submit" value="Cadastrar">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</body>
+
+
+
+	<footer>
+		<div id="rodape">
+			<p>Contato</p>
+		</div>
+	</footer>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

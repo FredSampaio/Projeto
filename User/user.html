@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+
+<!--Tela com as ações: agendar horário, comprar produto, editar seu registro, cadastrar/listar animais --> 
+
+<html>
+	<head>
+	    <title>Pet Shop</title>
+		<link rel="stylesheet" href="user.css" type="text/css">
+		<meta name="description" content="A página com as ações disponíveis ao usuário de um pet shop chamado Pet Shop"/>
+		<meta charset="utf-8"/><!--utilizado para os caraceters acentuados-->
+	</head>
+	<body>
+		<div id="page">
+			<div id="logo">
+				<img src="rsz_logo.jpg" alt="Logo do pet shop Pet Shop" style="width:160px">
+			</div>
+			<nav>
+				<ul id="menu"><!--as abas da página-->
+				    <li><a href="#comprar">Comprar produtos</a></li>
+				    <li><a href="#calendario">Calendario</a></li>
+				    <li><a href="#carrinho">Seu carrinho</a></li>
+				    <li><a href="#agendar">Agendar horário</a></li>
+				    <li><a href="#editar">Editar seu registro</a></li>
+				    <li><a href="#cadastrar">Seus animais</a></li>
+				</ul>
+			</nav>
+			
+			<div class="tab-folder">
+				<div id="cadastrar" class="tab-content">
+					<form>
+						<div class="formulario">
+							<div class="formulario">
+								<p>Cadastrar novo animal:</p>
+							</div>
+							<div class="formulario">
+								<p>Foto:</p>
+								<input type="file" name="foto" accept="image/*">
+							</div>
+							<div class="formulario">
+								<p>Nome:</p>
+								<input type="text" name="nome">
+							</div>
+						</div>
+					</form>
+					<div class="animal"><!--os animais do usuário-->
+						<div class="animal">
+							<img src="Animais/fifi.jpg" alt="Fifi" style="width:160px;height:160px">					
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Fifi</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>1</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Poodle</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>3 anos</p>
+						</div>
+						<br>
+						<div class="animal">
+							<img src="Animais/rex.jpg" alt="Rex" style="width:160px;height:160px">
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Rex</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>2</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Pit Bull</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>2 anos</p>
+						</div>
+						<br>
+						<div class="animal">
+							<img src="Animais/pantera.jpg" alt="Pantera" style="width:160px;height:160px">
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Pantera</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>3</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Bengal</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>1 ano</p>
+						</div>
+						<br>
+						<div class="animal">
+							<img src="Animais/lorde.jpg" alt="Lorde" style="width:160px;height:160px">
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Lorde</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>4</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Persa</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>6 anos</p>
+						</div>
+						<br>
+						<div class="animal">
+							<img src="Animais/cenoura.jpg" alt="Cenoura" style="width:160px;height:160px">
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Cenoura</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>5</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Coelho</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>3 anos</p>
+						</div>
+						<br>
+						<div class="animal">
+							<img src="Animais/faisca.jpg" alt="Faisca" style="width:160px;height:160px">
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Faísca</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>6</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Calopsita</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>2 anos</p>
+						</div>
+						<br>
+						<div class="animal">
+							<img src="Animais/haroldo.jpg" alt="Haroldo" style="width:160px;height:160px">
+						</div>
+						<div class="quantidade">
+							<p>Nome:</p>
+							<p>Haroldo</p>
+						</div>
+						<div class="quantidade">
+							<p>ID:</p>
+							<p>7</p>
+						</div>
+						<div class="quantidade">
+							<p>Raça:</p>
+							<p>Furão</p>
+						</div>
+						<div class="quantidade">
+							<p>Idade:</p>
+							<p>8 anos</p>
+						</div>
+						<br>
+					</div>
+				</div>
+				<div id="editar" class="tab-content">
+					<form>
+						<div class="formulario">
+							<div class="formulario">
+								<p>Nome completo:</p>
+								<input type="text" name="nome">
+							</div>
+							<div class="formulario">
+								<p>Email:</p>
+								<input type="email" name="email">
+							</div>
+							<div class="formulario">
+								<p>Telefone:</p>
+								<input type="tel" name="telefone">
+							</div>
+							<div class="formulario">
+								<p>Endereço:</p>
+								<input type="text" name="endereco">
+							</div>
+							<div class="formulario">
+								<p>Cidade:</p>
+								<input type="text" name="cidade">
+							</div>
+							<div class="formulario">
+								<p>Estado:</p>
+								<input type="text" name="estado">
+							</div>
+							<div class="formulario">
+								<input type="submit" value="Alterar">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="agendar" class="tab-content">
+					<form>
+						<div class="formulario">
+							<div class="formulario">
+								<p>Escolha o tipo de serviço:</p>
+								<select name="servico">
+									<option value="consulta">Consulta</option>
+									<option value="banho">Banho</option>
+									<option value="tosa">Tosa</option>
+								</select>
+							</div>
+							<div class="formulario">
+								<p>Escolha a data e a hora do serviço:</p>
+								<input type="date" name="data_servico">
+							</div>
+							<div class="formulario">
+								<p>Escolha a hora do serviço:</p>
+								<input type="time" name="hora_servico">
+							</div>
+							<div class="formulario">
+								<input type="submit" value="Agendar">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="carrinho" class="tab-content">					
+					
+				</div>
+				<div id="comprar" class="tab-content">
+				<!--para funcionar o comportamento de abas, a aba a ser aberta por padrão tem que vir por último-->
+					<div class="produto" id="produtos"><!--todos os produtos à venda-->
+					<!--produtos adicionados por javascript-->
+					</div>
+				</div>
+				<div id="calendario" class="tab-content">
+					<div class="mes"> 
+						 <ul>
+						   <li class="prev">&#10094;</li>
+						   <li class="next">&#10095;</li>
+						   <li>
+						     Abril<br>
+						     <span style="font-size:18px">2017</span>
+						   </li>
+						 </ul>
+					 <button style="margin-top: 20px;
+    								width: 100%;
+    								padding: 10px;"	>
+    						Agendar Horario</button>
+					</div>
+
+					<ul class="diassemana">
+					  <li>Seg</li>
+					  <li>Ter</li>
+					  <li>Qua</li>
+					  <li>Qui</li>
+					  <li>Sex</li>
+					  <li>Sab</li>
+					  <li>Dom</li>
+					</ul>
+
+					<ul class="dias"> 
+					  <li>1</li>
+					  <li>2</li>
+					  <li>3					  	
+					 		<span class="tooltiptext">
+					  		-Haroldo: Processo cirúrgico (17:00)<br>
+					  		-Cenoura: Vacina (18:30)<br>
+					  	</span></li>
+					  <li>4</li>
+					  <li>5</li>
+					  <li>6</li>
+					  <li>7</li>
+					  <li>8</li>
+					  <li>9</li>
+					  <li>10</li>
+					  <li>11</li>
+					  <li>12</li>
+					  <li>13</li>
+					  <li>14</li>
+					  <li>15</li>
+					  <li>16					  	
+					 		<span class="tooltiptext">
+					  		-Faísca: Cirurgia<br>
+					  		-Rex: Tosa e Banho (9:30)<br>
+					  		-Lorde: Vacinação (12:20)
+					  	</span></li>
+					  <li><span class="active">17</span></li>
+					  <li>18</li>
+					  <li>19</li>	
+					  <li>20</li>
+					  <li>21</li>
+					  <li>22</li>
+					  <li>23</li>
+					  <li>24</li>
+					  <li>25					  	
+					 		<span class="tooltiptext">
+					  		-Fifi: Remédio Anti-pulgas (9:30)<br>
+					  		-Pantera: Castração (12:00)<br>
+					  		-Rex: Adestramento (13:10)
+					  		-Cenoura: Adestramento (16:30)
+					  	</span></li>
+					  <li>26</li>
+					  <li>27</li>
+					  <li>28</li>
+					  <li>29</li>
+					  <li>30</li>				  				  
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="produtos.json" type="text/javascript" charset="utf-8"></script>
+		<script src="produtos.js" type="text/javascript" charset="utf-8"></script>
+		<script src="carrinho.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+	<footer>
+		<div id="rodape">
+			<p>Contato</p>
+		</div>
+	</footer>
+</html>
