@@ -128,7 +128,7 @@ function login() {
 				return;
 			}
 			if(senha_salva==senha) {
-				alert("Login feito com sucesso.");
+				window.location.href="../User/user.html";
 			}
 			else {
 				alert("Senha incorreta.");
@@ -140,4 +140,3 @@ function login() {
 		};
 	};
 }
-	
