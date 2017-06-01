@@ -5,6 +5,12 @@ body {
 	font-family: arial;
 }
 
+#usuario_logado {
+    float: right;
+    padding-top: 45px;
+    padding-right: 45px;
+}
+
 #logo {
 	background-color: white;
 	margin: 20px 20px 20px 20px;

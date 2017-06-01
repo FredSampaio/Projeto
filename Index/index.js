@@ -1,9 +1,3 @@
-//parte do IndexedDB foi baseada no tutorial da MDN,
-//disponível em https://developer.mozilla.org/pt-BR/docs/IndexedDB/Usando_IndexedDB
-//parte do IndexedDB foi baseada nesse exemplo:
-//https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
-//parte do IndexedDB foi baseada nos slides de aula
-
 let indexedDB = window.indexedDB || 
 				window.mozIndexedDB || 
 				window.webkitIndexedDB || 
@@ -86,6 +80,7 @@ function cadastrar() {
 	};
 	
 	alert("Cadastro de "+nome+" realizado com sucesso.");
+	document.getElementById("form_cadastra").reset();
 }
 
 function login() {
@@ -141,7 +136,7 @@ function login() {
 				else
 					alert("Seu navegador não suporte Local Storage");
 									
-				alert("Login feito com sucesso.");
+					window.location.href="../User/user.html";
 			}
 			//se a senha não confere
 			else {

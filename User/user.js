@@ -3,6 +3,20 @@ let indexedDB = window.indexedDB ||
 				window.webkitIndexedDB || 
 				window.msIndexedDB || 
 				window.shimIndexedDB;
+				
+let logado = localStorage.getItem("atualLogado");
+
+//preenche input do email com o email do usuario logado
+document.getElementById("email").setAttribute('value',logado);
+
+//usuario logado fica escrito na tela
+let spanLogado = document.createElement("span");
+let texto = document.createTextNode("Usuário: " +logado);
+spanLogado.appendChild(texto);
+spanLogado.setAttribute("id", "usuario_logado");
+
+let element = document.getElementById("logo");
+element.appendChild(spanLogado);
 
 function alterarCadastro()
 {
@@ -37,9 +51,8 @@ function alterarCadastro()
 		if (typeof(Storage) !== "undefined") 
 		{
 			let logado = localStorage.getItem("atualLogado");	//recupera pessoa logada
-			console.log("Logado(storage):"+logado);
 			
-			let atualiza = store.openCursor();
+			let atualiza = store.openCursor();					//abre cursor para atualizar
 			atualiza.onsuccess = (event) => 
 			{
 				let cursor = event.target.result;
@@ -47,6 +60,7 @@ function alterarCadastro()
 					if(cursor.value.email == logado) 
 					{
 						let dados = cursor.value;				//recupera dados no banco
+						//console.log(dados);
 						
 						let nome=document.getElementById("nome").value;
 						let email=document.getElementById("email").value;
@@ -58,12 +72,11 @@ function alterarCadastro()
 						//se alguma dos inputs estiverem vazios, nao alterar nada no banco
 						if(nome!=="")
 							dados.nome = nome;
-						if(email!=="") 
-						{
-							console.log("entrou fuck");
-							dados.email = email;
-							localStorage.setItem("atualLogado", email); //troca email logado tb
-						}
+						//if(email!=="") 
+						//{
+							//dados.email = email;
+							//localStorage.setItem("atualLogado", email); //troca email logado tb
+						//}
 						if(telefone!=="")
 							dados.telefone = telefone;
 						if(endereco!=="")
@@ -72,8 +85,9 @@ function alterarCadastro()
 							dados.cidade = cidade;
 						if(estado!=="")
 							dados.estado = estado;
-						if(nome=="" && email=="" && telefone=="" && endereco=="" && cidade=="" && estado=="") 
+						if(nome=="" && (email==""  || email == logado) && telefone=="" && endereco=="" && cidade=="" && estado=="") 
 						{
+							document.getElementById("email").value = localStorage.getItem("atualLogado");
 							alert("Pelo menos um dos campos devem ser preechidos");
 							return;
 						}						
@@ -93,7 +107,7 @@ function alterarCadastro()
 			};			
 		}
 		else {alert("Seu navegador não suporte Local Storage");}
-		
+
 		//encerra banco
 		tx.oncomplete = () => {db.close();}	
 	};
