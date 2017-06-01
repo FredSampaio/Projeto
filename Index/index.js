@@ -4,6 +4,12 @@
 //https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
 //parte do IndexedDB foi baseada nos slides de aula
 
+let indexedDB = window.indexedDB || 
+				window.mozIndexedDB || 
+				window.webkitIndexedDB || 
+				window.msIndexedDB || 
+				window.shimIndexedDB;
+
 function cadastrar() {
 	let nome=document.getElementById("nome").value;
 	if(nome=="") {
@@ -51,32 +57,35 @@ function cadastrar() {
 		return;
 	}
 
-	let db;
+	// abre banco de dados (ou cria, caso não exista)
 	let request=indexedDB.open("usersDB",2);
 
+	//se IndexedDB der erro
 	request.onerror=(event)=> {
 		alert("Erro ao utilizar IndexedDB.");
 	};
 
+	// cria o schema do banco
 	request.onupgradeneeded=(event)=> { 
-		let db=request.result;
-		let store=db.createObjectStore("users", {keyPath: "email"});
+		let db=request.result;			
+		let store=db.createObjectStore("users", {keyPath: "email"});	//email sera a chave primaria da tupla users
 	};
 
 	request.onsuccess=(event)=> {
 		let db=request.result;
-		let tx=db.transaction("users", "readwrite");
+		let tx=db.transaction("users", "readwrite");	//recupera tupla users
 		let store=tx.objectStore("users");
 
-		store.put({nome: nome, email: email, senha: senha,
+		store.add({nome: nome, email: email, senha: senha,
 			telefone: telefone, endereco: endereco, cidade: cidade, estado: estado});
 
+		//fecha banco de dados
 		tx.oncomplete=()=> {
 			db.close();
 		};
 	};
-
-	alert("Cadastro de "+nome+" realizado com sucesso.")
+	
+	alert("Cadastro de "+nome+" realizado com sucesso.");
 }
 
 function login() {
@@ -95,9 +104,10 @@ function login() {
 		console.log("Seu navegador não suporta indexedDB.");
 	}
 
-	let db;
+	// abre banco de dados (ou cria, caso não exista)
 	let request=indexedDB.open("usersDB",2);
 
+	//se IndexedDB der erro
 	request.onerror=(event)=> {
 		alert("Erro ao utilizar IndexedDB.");
 	};
@@ -116,16 +126,24 @@ function login() {
 		let getUser=store.get(email);
 	
 		getUser.onsuccess=()=> {
-			try {
-				senha_salva=getUser.result.senha;
-			}
+			try {senha_salva=getUser.result.senha;}
+			
 			catch(err) {
 				alert("Email incorreto. Possui cadastro?");
 				return;
 			}
+			
+			//se a senha confere
 			if(senha_salva==senha) {
+				//guardaremos o "token" numa local storage
+				if (typeof(Storage) !== "undefined")
+					localStorage.setItem("atualLogado", email);
+				else
+					alert("Seu navegador não suporte Local Storage");
+									
 				alert("Login feito com sucesso.");
 			}
+			//se a senha não confere
 			else {
 				alert("Senha incorreta.");
 			}
@@ -136,4 +154,3 @@ function login() {
 		};
 	};
 }
-	

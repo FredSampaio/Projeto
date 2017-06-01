@@ -11,6 +11,8 @@
 		<meta charset="utf-8"/><!--utilizado para os caraceters acentuados-->
 	</head>
 	<body>
+	<script src="user.js" type="text/javascript"></script>
+		
 		<div id="page">
 			<div id="logo">
 				<img src="rsz_logo.jpg" alt="Logo do pet shop Pet Shop" style="width:160px">
@@ -191,30 +193,59 @@
 						<div class="formulario">
 							<div class="formulario">
 								<p>Nome completo:</p>
-								<input type="text" name="nome">
+								<input type="text" id="nome">
 							</div>
 							<div class="formulario">
 								<p>Email:</p>
-								<input type="email" name="email">
+								<input type="email" id="email">
 							</div>
 							<div class="formulario">
 								<p>Telefone:</p>
-								<input type="tel" name="telefone">
+								<input type="tel" id="telefone">
 							</div>
 							<div class="formulario">
 								<p>Endereço:</p>
-								<input type="text" name="endereco">
+								<input type="text" id="endereco">
 							</div>
 							<div class="formulario">
 								<p>Cidade:</p>
-								<input type="text" name="cidade">
+								<input type="text" id="cidade">
 							</div>
 							<div class="formulario">
-								<p>Estado:</p>
-								<input type="text" name="estado">
+							Estado:<br>
+							<select id="estado">
+								<option value="">Selecione</option>
+								<option value="AC">Acre</option>
+								<option value="AL">Alagoas</option>
+								<option value="AP">Amapá</option>
+								<option value="AM">Amazonas</option>
+								<option value="BA">Bahia</option>
+								<option value="CE">Ceará</option>
+								<option value="DF">Distrito Federal</option>
+								<option value="ES">Espirito Santo</option>
+								<option value="GO">Goiás</option>
+								<option value="MA">Maranhão</option>
+								<option value="MS">Mato Grosso do Sul</option>
+								<option value="MT">Mato Grosso</option>
+								<option value="MG">Minas Gerais</option>
+								<option value="PA">Pará</option>
+								<option value="PB">Paraíba</option>
+								<option value="PR">Paraná</option>
+								<option value="PE">Pernambuco</option>
+								<option value="PI">Piauí</option>
+								<option value="RJ">Rio de Janeiro</option>
+								<option value="RN">Rio Grande do Norte</option>
+								<option value="RS">Rio Grande do Sul</option>
+								<option value="RO">Rondônia</option>
+								<option value="RR">Roraima</option>
+								<option value="SC">Santa Catarina</option>
+								<option value="SP">São Paulo</option>
+								<option value="SE">Sergipe</option>
+								<option value="TO">Tocantins</option>
+							</select>
 							</div>
 							<div class="formulario">
-								<input type="submit" value="Alterar">
+								<button onclick="alterarCadastro()">Alterar</button>
 							</div>
 						</div>
 					</form>
