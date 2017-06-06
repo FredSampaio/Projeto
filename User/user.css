@@ -5,6 +5,11 @@ body {
 	font-family: arial;
 }
 
+#calendar {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
 #usuario_logado {
     float: right;
     padding-top: 45px;

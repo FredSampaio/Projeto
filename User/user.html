@@ -9,6 +9,14 @@
 		<link rel="stylesheet" href="user.css" type="text/css">
 		<meta name="description" content="A página com as ações disponíveis ao usuário de um pet shop chamado Pet Shop"/>
 		<meta charset="utf-8"/><!--utilizado para os caraceters acentuados-->
+		<link rel='stylesheet' href='../plugins/fullcalendar/lib/cupertino/jquery-ui.min.css' />
+		<link href='../plugins/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+		<link href='../plugins/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+		<script src='../plugins/fullcalendar/lib/moment.min.js'></script>
+		<script src='../plugins/fullcalendar/lib/jquery.min.js'></script>
+		<script src='../plugins/fullcalendar/fullcalendar.min.js'></script>
+		<script src='../plugins/fullcalendar/locale-all.js'></script>
+
 	</head>
 	<body>
 		<div id="page">
@@ -282,82 +290,11 @@
 					<!--produtos adicionados por javascript-->
 					</div>
 				</div>
-				<div id="calendario" class="tab-content">
-					<div class="mes"> 
-						 <ul>
-						   <li class="prev">&#10094;</li>
-						   <li class="next">&#10095;</li>
-						   <li>
-						     Abril<br>
-						     <span style="font-size:18px">2017</span>
-						   </li>
-						 </ul>
-					 <button style="margin-top: 20px;
-    								width: 100%;
-    								padding: 10px;"	>
-    						Agendar Horario</button>
-					</div>
-
-					<ul class="diassemana">
-					  <li>Seg</li>
-					  <li>Ter</li>
-					  <li>Qua</li>
-					  <li>Qui</li>
-					  <li>Sex</li>
-					  <li>Sab</li>
-					  <li>Dom</li>
-					</ul>
-
-					<ul class="dias"> 
-					  <li>1</li>
-					  <li>2</li>
-					  <li>3					  	
-					 		<span class="tooltiptext">
-					  		-Haroldo: Processo cirúrgico (17:00)<br>
-					  		-Cenoura: Vacina (18:30)<br>
-					  	</span></li>
-					  <li>4</li>
-					  <li>5</li>
-					  <li>6</li>
-					  <li>7</li>
-					  <li>8</li>
-					  <li>9</li>
-					  <li>10</li>
-					  <li>11</li>
-					  <li>12</li>
-					  <li>13</li>
-					  <li>14</li>
-					  <li>15</li>
-					  <li>16					  	
-					 		<span class="tooltiptext">
-					  		-Faísca: Cirurgia<br>
-					  		-Rex: Tosa e Banho (9:30)<br>
-					  		-Lorde: Vacinação (12:20)
-					  	</span></li>
-					  <li><span class="active">17</span></li>
-					  <li>18</li>
-					  <li>19</li>	
-					  <li>20</li>
-					  <li>21</li>
-					  <li>22</li>
-					  <li>23</li>
-					  <li>24</li>
-					  <li>25					  	
-					 		<span class="tooltiptext">
-					  		-Fifi: Remédio Anti-pulgas (9:30)<br>
-					  		-Pantera: Castração (12:00)<br>
-					  		-Rex: Adestramento (13:10)
-					  		-Cenoura: Adestramento (16:30)
-					  	</span></li>
-					  <li>26</li>
-					  <li>27</li>
-					  <li>28</li>
-					  <li>29</li>
-					  <li>30</li>				  				  
-					</ul>
+				<div id="calendar" class="tab-content">
 				</div>
 			</div>
 		</div>
+		<script src="eventos.json" type="text/javascript" charset="utf-8"></script>
 		<script src="produtos.json" type="text/javascript" charset="utf-8"></script>
 		<script src="produtos.js" type="text/javascript" charset="utf-8"></script>
 		<script src="carrinho.js" type="text/javascript" charset="utf-8"></script>

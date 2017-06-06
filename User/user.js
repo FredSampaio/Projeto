@@ -112,3 +112,27 @@ function alterarCadastro()
 		tx.oncomplete = () => {db.close();}	
 	};
 }
+
+//povoa o calendario	
+let eventos=JSON.parse(dados_eventos);
+
+$(document).ready(function() {
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay,listMonth'
+		},
+		
+		eventStartEditable: false,
+		theme: true,
+		defaultDate: '2017-05-12',
+		locale: 'pt-br',
+		buttonIcons: false, // show the prev/next text
+		weekNumbers: true,
+		navLinks: true, // can click day/week names to navigate views
+		editable: true,
+		eventLimit: true, // allow "more" link when too many events
+		events: eventos
+	});
+});
