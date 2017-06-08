@@ -36,32 +36,30 @@
 			
 			<div class="tab-folder">
 				<div id="cadastrar" class="tab-content">
-					<form>
+					<div class="formulario">
 						<div class="formulario">
-							<div class="formulario">
-								<p>Cadastrar novo animal:</p>
-							</div>
-							<div class="formulario">
-								<p>Foto:</p>
-								<input type="file" name="foto" accept="image/*">
-							</div>
-							<div class="formulario">
-								<p>Nome:</p>
-								<input type="text" name="nome">
-							</div>
-							<div class="formulario">
-								<p>Raça:</p>
-								<input type="text" name="raca">
-							</div>
-							<div class="formulario">
-								<p>Idade:</p>
-								<input type="number" name="idade">
-							</div>
-							<div class="formulario">
-								<button>Cadastrar</button>
-							</div>
+							<p>Cadastrar novo animal:</p>
 						</div>
-					</form>
+						<div class="formulario">
+							<p>Foto:</p>
+							<input type="file" name="foto" accept="image/*">
+						</div>
+						<div class="formulario">
+							<p>Nome:</p>
+							<input type="text" name="nome" id="nome_animal">
+						</div>
+						<div class="formulario">
+							<p>Raça:</p>
+							<input type="text" name="raca" id="raca_animal">
+						</div>
+						<div class="formulario">
+							<p>Idade:</p>
+							<input type="number" name="idade" id="idade_animal">
+						</div>
+						<div class="formulario">
+							<button onclick="adicionar_animal()">Cadastrar</button>
+						</div>
+					</div>
 					<div class="animal" id="animais"><!--os animais do usuário-->
 						<button onclick="popular_animais()" style="margin: 20px 20px 20px 20px; color: red">Insira animais para teste</button>
 					</div>

@@ -23,7 +23,7 @@
 
 	request.onupgradeneeded=(event)=> { 
 		let db=request.result;
-		let store=db.createObjectStore("animais", {keyPath: "id"});
+		let store=db.createObjectStore("animais", {keyPath: "id", autoIncrement: true});
 	};
 
 	request.onsuccess=(event)=> {
@@ -35,7 +35,7 @@
 
 		for(let i=0;i<animais.length;i++){
 			let obj=animais[i];
-			let teste=store.put({id: obj.id, url: obj.url, nome: obj.nome, raca: obj.raca, idade: obj.idade});
+			let teste=store.put({url: obj.url, nome: obj.nome, raca: obj.raca, idade: obj.idade});
 		}
 
 		tx.oncomplete=()=> {
@@ -104,26 +104,46 @@ function exibir_animais() {
 	};
 }
 
+function adicionar_animal() {	
+	if(!window.indexedDB) {
+		console.log("Seu navegador não suporta indexedDB.");
+		return;
+	}
+	
+	let url="Animais/error.jpg";
+	let nome=document.getElementById("nome_animal").value;
+	let raca=document.getElementById("raca_animal").value;
+	let idade=document.getElementById("idade_animal").value;
+	
+	if(nome=="" || raca=="" || idade=="") {
+		alert("Insira todos os dados do animal");
+		return;
+	}
 
-	/*
-	document.getElementById("animais").innerHTML+='\
-						<div class="animal">\
-							<img src="'+obj.url+'" alt="'+obj.nome+'" style="width:160px;height:160px">\
-						</div>\
-						<div class="quantidade">\
-							<p>Nome:</p>\
-							<p>'+obj.nome+'</p>\
-						</div>\
-						<div class="quantidade">\
-							<p>ID:</p>\
-							<p>'+obj.id+'</p>\
-						</div>\
-						<div class="quantidade">\
-							<p>Raça:</p>\
-							<p>'+obj.raca+'</p>\
-						</div>\
-						<div class="quantidade">\
-							<p>Idade:</p>\
-							<p>'+obj.idade+' anos</p>\
-						</div>\
-						<br>';*/
+	let db;
+	let request=indexedDB.open("animaisDB", 2);
+
+	request.onerror=(event)=> {
+		alert("Erro ao utilizar IndexedDB.");
+	};
+
+	request.onupgradeneeded=(event)=> { 
+		let db=request.result;
+		let store=db.createObjectStore("animais", {keyPath: "id", autoIncrement: true});
+	};
+
+	request.onsuccess=(event)=> {
+		let db=request.result;
+		let tx=db.transaction("animais", "readwrite");
+		let store=tx.objectStore("animais");
+		
+		let teste=store.put({url: url, nome: nome, raca: raca, idade: idade});
+		
+
+		tx.oncomplete=()=> {
+			db.close();
+		};
+	};
+	exibir_animais();
+}
+
