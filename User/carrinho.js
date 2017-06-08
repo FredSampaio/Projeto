@@ -8,7 +8,6 @@
 povoarCarrinho();
 
 function povoarCarrinho() {
-	let produtos=JSON.parse(dados_produtos);
 	
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
@@ -24,7 +23,7 @@ function povoarCarrinho() {
 
 	request.onupgradeneeded=(event)=> { 
 		let db=request.result;
-		let store=db.createObjectStore("produtos", {keyPath: "produto"});
+		let store=db.createObjectStore("produtos", {keyPath: "id"});
 	};
 			
 	document.getElementById("carrinho").innerHTML='';
@@ -40,29 +39,30 @@ function povoarCarrinho() {
 			let cursor=event.target.result;
 			
 			if(cursor) {
-				let obj=produtos[cursor.value.produto];
 				
-				if(cursor.value.quantidade!=0) {				
+				if(cursor.value.quantidade!=0) {
 					document.getElementById("carrinho").innerHTML+='\
 						<div class="produto-carrinho">\
 							<div class="produto">\
-								<img src="'+obj.url+'" alt="'+obj.nome+'" style="width:160px;height:160px">\
-								<p>'+obj.nome+'</p>\
+								<img src="'+cursor.value.url+'" alt="'+cursor.value.nome+'" style="width:160px;height:160px">\
+								<p>'+cursor.value.nome+'</p>\
 							</div>\
 							<div class="quantidade">\
 								<p>Quantidade:</p>\
 								<p>'+cursor.value.quantidade+'</p>\
-								<button onclick=remover('+cursor.value.produto+')>-</button>\
-								<button onclick=adicionar('+cursor.value.produto+')>+</button>\
+								<button onclick="remover('+cursor.value.id+',\''
+								+cursor.value.url+'\',\''+cursor.value.nome+'\','+cursor.value.preco+')">-</button>\
+								<button onclick="adicionar('+cursor.value.id+',\''
+								+cursor.value.url+'\',\''+cursor.value.nome+'\','+cursor.value.preco+')">+</button>\
 							</div>\
 							<div class="quantidade">\
 								<p>Preço total:</p>\
-								<p>'+(cursor.value.quantidade*obj.preco).toFixed(2).toString().replace('.', ',')+'</p>\
+								<p>'+(cursor.value.quantidade*cursor.value.preco).toFixed(2).toString().replace('.', ',')+'</p>\
 							</div>\
 						</div>\
 						<br>';
 					
-					preco_total+=cursor.value.quantidade*obj.preco;
+					preco_total+=cursor.value.quantidade*cursor.value.preco;
 				}
 				
 				cursor.continue();
@@ -79,7 +79,7 @@ function povoarCarrinho() {
 	};
 }
 
-function adicionar(codigo) {	
+function adicionar(id, url, nome, preco) {	
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
@@ -94,7 +94,7 @@ function adicionar(codigo) {
 
 	request.onupgradeneeded=(event)=> { 
 		let db=request.result;
-		let store=db.createObjectStore("produtos", {keyPath: "produto"});
+		let store=db.createObjectStore("produtos", {keyPath: "id"});
 	};
 
 	request.onsuccess=(event)=> {
@@ -102,7 +102,7 @@ function adicionar(codigo) {
 		let tx=db.transaction("produtos", "readwrite");
 		let store=tx.objectStore("produtos");
 		
-		let getProduto=store.get(codigo);
+		let getProduto=store.get(id);
 		let quantidade;
 		
 		getProduto.onsuccess=()=> {
@@ -112,7 +112,7 @@ function adicionar(codigo) {
 			catch(err) {
 				quantidade=0;
 			}
-			store.put({produto: codigo, quantidade: (quantidade+1)});
+			store.put({id: id, quantidade: (quantidade+1), url: url, nome: nome, preco: preco});
 			povoarCarrinho();
 		}
 
@@ -122,7 +122,7 @@ function adicionar(codigo) {
 	};
 }
 
-function remover(codigo) {	
+function remover(id, url, nome, preco) {	
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
@@ -137,7 +137,7 @@ function remover(codigo) {
 
 	request.onupgradeneeded=(event)=> { 
 		let db=request.result;
-		let store=db.createObjectStore("produtos", {keyPath: "produto"});
+		let store=db.createObjectStore("produtos", {keyPath: "id"});
 	};
 
 	request.onsuccess=(event)=> {
@@ -145,7 +145,7 @@ function remover(codigo) {
 		let tx=db.transaction("produtos", "readwrite");
 		let store=tx.objectStore("produtos");
 		
-		let getProduto=store.get(codigo);
+		let getProduto=store.get(id);
 		let quantidade;
 		
 		getProduto.onsuccess=()=> {
@@ -156,7 +156,7 @@ function remover(codigo) {
 				quantidade=0;
 			}
 			if(quantidade>0) {
-				store.put({produto: codigo, quantidade: (quantidade-1)});
+				store.put({id: id, quantidade: (quantidade-1), url: url, nome: nome, preco: preco});
 				povoarCarrinho();
 			}
 		}
