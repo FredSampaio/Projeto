@@ -5,7 +5,34 @@
 //parte do IndexedDB foi baseada nos slides de aula
 //a parte de cursores foi baseada em:
 //https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor
+
 povoarCarrinho();
+
+function finalizar() {
+	document.getElementById("finalizar").innerHTML='\
+			<div class="formulario">\
+				<div class="formulario">\
+					<p>Número do cartão de crédito:</p>\
+					<input type="number" id="numero_cartao">\
+				</div>\
+				<div class="formulario">\
+					<p>Nome como está escrito no cartão:</p>\
+					<input type="text" id="nome_cartao">\
+				</div>\
+				<div class="formulario">\
+					<p>Data de validade:</p>\
+					<input type="month" id="mes_cartao">\
+				</div>\
+				<div class="formulario">\
+					<p>Código de segurança:</p>\
+					<input type="number" id="cvv_cartao">\
+				</div>\
+				<div class="formulario">\
+					<button onclick="pagar()">Pagar</button>\
+				</div>\
+			</div>';
+	
+}
 
 function povoarCarrinho() {
 	
@@ -72,7 +99,7 @@ function povoarCarrinho() {
 					<div id="total"><!--soma de todos os produtos do carrinho-->\
 						<p>Total geral:</p>\
 						<p id="total">R$'+preco_total.toFixed(2).toString().replace('.', ',')+'</p><br>\
-						<button type="button">Finalizar</button>\
+						<button type="button" onclick="finalizar()">Finalizar</button>\
 					</div>';
 			}
 		};
