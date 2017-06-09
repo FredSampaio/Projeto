@@ -51,9 +51,9 @@ function povoarCarrinho() {
 								<p>Quantidade:</p>\
 								<p>'+cursor.value.quantidade+'</p>\
 								<button onclick="remover('+cursor.value.id+',\''
-								+cursor.value.url+'\',\''+cursor.value.nome+'\','+cursor.value.preco+')">-</button>\
+								+cursor.value.url+'\',\''+cursor.value.nome+'\','+cursor.value.quantidade_disponivel+','+cursor.value.preco+')">-</button>\
 								<button onclick="adicionar('+cursor.value.id+',\''
-								+cursor.value.url+'\',\''+cursor.value.nome+'\','+cursor.value.preco+')">+</button>\
+								+cursor.value.url+'\',\''+cursor.value.nome+'\','+cursor.value.quantidade_disponivel+','+cursor.value.preco+')">+</button>\
 							</div>\
 							<div class="quantidade">\
 								<p>Preço total:</p>\
@@ -79,7 +79,7 @@ function povoarCarrinho() {
 	};
 }
 
-function adicionar(id, url, nome, preco) {	
+function adicionar(id, url, nome, quantidade_disponivel, preco) {	
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
@@ -112,8 +112,13 @@ function adicionar(id, url, nome, preco) {
 			catch(err) {
 				quantidade=0;
 			}
-			store.put({id: id, quantidade: (quantidade+1), url: url, nome: nome, preco: preco});
-			povoarCarrinho();
+			if(quantidade+1<=quantidade_disponivel) {
+				store.put({id: id, quantidade: (quantidade+1), quantidade_disponivel: quantidade_disponivel, url: url, nome: nome, preco: preco});
+				povoarCarrinho();
+			}
+			else {
+				alert("A quantidade desejada não está disponível");
+			}
 		}
 
 		tx.oncomplete=()=> {
@@ -122,7 +127,7 @@ function adicionar(id, url, nome, preco) {
 	};
 }
 
-function remover(id, url, nome, preco) {	
+function remover(id, url, nome, quantidade_disponivel, preco) {	
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
@@ -156,7 +161,7 @@ function remover(id, url, nome, preco) {
 				quantidade=0;
 			}
 			if(quantidade>0) {
-				store.put({id: id, quantidade: (quantidade-1), url: url, nome: nome, preco: preco});
+				store.put({id: id, quantidade: (quantidade-1), quantidade_disponivel: quantidade_disponivel, url: url, nome: nome, preco: preco});
 				povoarCarrinho();
 			}
 		}
