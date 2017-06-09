@@ -8,6 +8,11 @@
 
 povoarCarrinho();
 
+function pagar() {
+	alert("O seu pagamento foi recusado pela operadora do cartão. Por favor, "+
+			"entre em contato com sua operadora ou tente novamente com outro cartão");
+}
+
 function finalizar() {
 	document.getElementById("finalizar").innerHTML='\
 			<div class="formulario">\
