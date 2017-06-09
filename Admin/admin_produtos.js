@@ -1,4 +1,6 @@
-﻿function adicionar_produto() {
+﻿lista_apagar();
+
+function adicionar_produto() {
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
@@ -41,20 +43,79 @@
 	};
 }
 
-function apagar_produto() {
+function lista_apagar() {
+	document.getElementById("lista_apagar").innerHTML='\
+				<div class="produto-carrinho">\
+					<div class="produto">\
+						<p>Não há produtos para listar</p>\
+					</div>\
+				</div>';
+
+	if(!window.indexedDB) {
+		console.log("Seu navegador não suporta indexedDB.");
+		return;
+	}
+
+	let db;
+	let request=indexedDB.open("produtosDB", 2);
+
+	request.onerror=(event)=> {
+		alert("Erro ao utilizar IndexedDB.");
+	};
+
+	request.onupgradeneeded=(event)=> { 
+		let db=request.result;
+		let store=db.createObjectStore("produtos", {keyPath: "id", autoIncrement: true});
+	};
+
+	request.onsuccess=(event)=> {
+		let db=request.result;
+		let tx=db.transaction("produtos", "readwrite");
+		let store=tx.objectStore("produtos");
+		
+		let flag=0;
+		
+		store.openCursor().onsuccess=(event)=> {
+			let cursor=event.target.result;
+			
+			if(cursor) {
+				if(flag==0) {					
+					document.getElementById("lista_apagar").innerHTML='';
+					flag=1;
+				}
+				
+				document.getElementById("lista_apagar").innerHTML+='\
+								<div class="produto" onclick="apagar_produto('+cursor.value.id+')">\
+									<img src="'+cursor.value.url+'"\
+									alt="'+cursor.value.nome+'" style="width:160px;height:160px">\
+									<p>'+cursor.value.nome+'</p>\
+								</div>\
+								<div class="quantidade">\
+									<p>ID: '+cursor.value.id+'</p>\
+								</div>\
+							<br>';
+				cursor.continue();
+			}
+		};
+	};
+}
+	
+
+function apagar_produto(id) {
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 	
-	let id=+document.getElementById("apagar_produto").value;
-	
-	if(id=="") {
-		alert("Insira o ID do produto");
-		return;
+	if(arguments.length==0) {
+		
+		let id=+document.getElementById("apagar_produto").value;
+		
+		if(id=="") {
+			alert("Insira o ID do produto");
+			return;
+		}
 	}
-	
-	alert(id);
 
 	let db;
 	let request=indexedDB.open("produtosDB", 2);
@@ -77,7 +138,7 @@ function apagar_produto() {
 		let apagar=store.delete(id);
 
 		apagar.onsuccess = (event) =>{
-			alert("Teste");
+			lista_apagar();
 		};
 		tx.oncomplete=()=> {
 			db.close();
