@@ -71,7 +71,7 @@ function cadastrar() {
 		let store=tx.objectStore("users");
 
 		store.add({nome: nome, email: email, senha: senha,
-			telefone: telefone, endereco: endereco, cidade: cidade, estado: estado});
+			telefone: telefone, endereco: endereco, cidade: cidade, estado: estado, tipo: "user"});
 
 		//fecha banco de dados
 		tx.oncomplete=()=> {
@@ -136,12 +136,19 @@ function login() {
 			//se a senha confere
 			if(senha_salva==senha) {
 				//guardaremos o "token" numa local storage
-				if (typeof(Storage) !== "undefined")
+				if (typeof(Storage) !== "undefined") {
 					localStorage.setItem("atualLogado", email);
-				else
+				}
+				else {
 					alert("Seu navegador não suporte Local Storage");
-									
+					return;
+				}
+				if(getUser.result.tipo=="user") {
 					window.location.href="../User/user.html";
+				}
+				else {
+					window.location.href="../Admin/admin-cadastrar.html";
+				}
 			}
 			//se a senha não confere
 			else {
