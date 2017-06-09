@@ -95,6 +95,11 @@ function login() {
 		return;
 	}
 	
+	if(email=="admin" && senha=="admin") {
+		window.location.href="../Admin/admin-cadastrar.html";
+		return;
+	}
+	
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 	}
