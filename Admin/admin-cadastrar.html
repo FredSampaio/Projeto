@@ -75,41 +75,31 @@
 						</div>
 
 						<div id="cadastrar_prod" class="sub-tab-content">
-							<form>
+							<div class="formulario">
 								<div class="formulario">
-									<div class="formulario">
-										<p>Nome do produto:</p>
-										<input type="text" name="nome">
-									</div>
-									<div class="formulario">
-										<p>ID:</p>
-										<input type="number" name="id">
-									</div>
-									<div class="formulario">
-										<p>Foto:</p>
-										<input type="file" name="foto" accept="image/*">
-									</div>
-									<div class="formulario">
-										<p>Descrição do produto:</p>
-										<input type="text" name="descricao">
-									</div>
-									<div class="formulario">
-										<p>Preço:</p>
-										<input type="number" name="preco">
-									</div>
-									<div class="formulario">
-										<p>Quantidade:</p>
-										<input type="number" name="quantidade">
-									</div>
-									<div class="formulario">
-										<p>Vendidos:</p>
-										<input type="number" name="vendidos">
-									</div>
-									<div class="formulario">
-										<input type="submit" value="Cadastrar">
-									</div>
+									<p>Nome do produto:</p>
+									<input id="nome_produto" type="text" name="nome">
 								</div>
-							</form>
+								<div class="formulario">
+									<p>Foto:</p>
+									<input id="foto_produto" type="file" name="foto" accept="image/*">
+								</div>
+								<div class="formulario">
+									<p>Descrição do produto:</p>
+									<input id="descricao_produto" type="text" name="descricao">
+								</div>
+								<div class="formulario">
+									<p>Preço:</p>
+									<input id="preco_produto" type="number" name="preco">
+								</div>
+								<div class="formulario">
+									<p>Quantidade:</p>
+									<input id="quantidade_produto"type="number" name="quantidade">
+								</div>
+								<div class="formulario">
+									<button onclick="adicionar_produto()">Cadastrar</button>
+								</div>
+							</div>
 						</div>
 
 						<div id="cadastrar_cli" class="sub-tab-content">
@@ -179,6 +169,7 @@
 				</div>	
 			</div>
 		</div>
+		<script src="cadastrar_produtos.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 
