@@ -1,4 +1,30 @@
-﻿lista_apagar();
+﻿//usuario logado fica escrito na tela
+let logado = localStorage.getItem("atualLogado");
+let spanLogado = document.createElement("span");
+let texto = document.createTextNode("Usuário: " +logado);
+spanLogado.appendChild(texto);
+spanLogado.setAttribute("id", "usuario_logado");
+
+let element = document.getElementById("logo");
+element.appendChild(spanLogado);
+
+let buttonLogout = document.createElement("button");
+buttonLogout.appendChild(document.createTextNode("Logout"));
+buttonLogout.setAttribute("id","buttonLogout");
+buttonLogout.setAttribute("value","Logout");
+buttonLogout.setAttribute("onclick","logout()");
+
+element.appendChild(buttonLogout);
+//----------------------------------------------------------
+
+function logout() {
+	if (typeof(Storage) !== "undefined") 
+			localStorage.removeItem("atualLogado");	//deleta o token da pessoa logada
+	window.location.href="../Index/index.html";
+	return;
+}
+
+lista_apagar();
 
 function adicionar_produto() {
 	//verifica se o indexedDB está disponível
@@ -165,6 +191,95 @@ function apagar_produto(id) {
 	};
 }
 
+function atualizarProd() {
+	//checa se o browser consegue trabalhar com indexeDB
+	if(!indexedDB)
+	{
+		console.log("Seu navegador não suporta indexedDB.");
+		return;		
+	}
+
+	//abre o pseudo banco (ou cria, caso não exista)
+	let request=indexedDB.open("produtosDB",2);
+
+	//se IndexedDB der erro
+	request.onerror = (event) => {alert("Erro ao utilizar IndexedDB.");};
+
+	request.onupgradeneeded=(event)=> 
+	{ 
+		//se a base não existir, é criada
+		let db=request.result;
+		let store=db.createObjectStore("produtos", {keyPath: "id"});
+	};
+
+	request.onsuccess=(event)=> 
+	{
+		let db=request.result;
+		let tx=db.transaction("produtos", "readwrite");
+		let store=tx.objectStore("produtos");
+
+		let atualiza = store.openCursor();					//abre cursor para atualizar
+		atualiza.onsuccess = (event) => 
+		{
+			let cursor = event.target.result;
+			if(cursor) {
+				console.log(cursor);
+
+				let id=document.getElementById("id").value;
+				console.log(id);
+				let nome=document.getElementById("nome").value;
+				let descricao=document.getElementById("descricao").value;
+				let preco=document.getElementById("preco").value;
+				let quantidade=document.getElementById("quantidade").value;
+				let vendidos=document.getElementById("vendidos").value;
+				
+				if(id=="")
+				{
+					alert("O campo ID deve ser preenchido!");
+					return;
+				}
+
+
+				if(cursor.value.id == id) 
+				{
+					console.log("Entrei aqui porra id: "+id);
+					//se alguma dos inputs estiverem vazios, nao alterar nada no banco
+					if(nome!=="")
+						cursor.value = nome;
+					if(descricao!=="")
+						cursor.value = descricao;
+					if(preco!=="")
+						cursor.value = preco;
+					if(quantidade!=="")
+						cursor.value = quantidade;
+					if(vendidos!=="")
+						cursor.value = vendidos;				
+
+					if(nome=="" && descricao=="" && preco=="" && quantidade=="" && vendidos=="") 
+					{
+						alert("Pelo menos um dos campos devem ser preechidos");
+						return;	
+					}	
+
+					//atualiza banco
+					console.log("ID: "+id);
+					let atualizaBD = cursor.update(cursor.value);
+					atualizaBD.onsuccess = () => {alert("Os dados foram atualizados com sucesso");};
+					
+					atualizaBD.onerror = () => {alert("Não foi possível atualizar o Banco de Dados");};
+				}
+				cursor.continue();
+				
+			}
+			//nao conseguiu reabrir o banco para o update
+			else {alert("Não foi possível reabrir o banco;");}
+		};
+
+		//encerra banco
+		tx.oncomplete = () => {db.close();}	
+	}
+}
+
 function relatorio_produtos() {
 	//mensagem só é exibida se não há produtos
 	document.getElementById("consultar_prod").innerHTML='\
@@ -224,7 +339,7 @@ function relatorio_produtos() {
 								</div>\
 								<div class="quantidade">\
 									<p>Preço unitário:</p>\
-									<p>'+cursor.value.preco.toFixed(2).toString().replace('.', ',')+'</p>\
+									<p>'+cursor.value.preco.toString().replace('.', ',')+'</p>\
 								</div>\
 								<div class="quantidade">\
 									<p>ID:</p>\
@@ -236,6 +351,7 @@ function relatorio_produtos() {
 								</div>\
 							</div>\
 							<br>';
+				console.log(cursor);
 				cursor.continue();
 			}
 		};

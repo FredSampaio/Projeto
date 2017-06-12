@@ -20,6 +20,16 @@ body {
     background-color: rgba(255, 255, 255, 1.0);
 }
 
+#usuario_logado {
+    float: right;
+    padding-top: 45px;
+    padding-right: 45px;
+}
+#buttonLogout {
+    float: right;
+    margin-top: 70px;
+    margin-right: -80px
+}
 
 /*gerenciar e cadastrar administradores, clientes, produtos e serviços são as abas da página*/
 #cadastar_admin {
