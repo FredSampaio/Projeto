@@ -6,9 +6,6 @@ let indexedDB = window.indexedDB ||
 				
 let logado = localStorage.getItem("atualLogado");
 
-//preenche input do email com o email do usuario logado
-document.getElementById("email").setAttribute('value',logado);
-
 //usuario logado fica escrito na tela
 let spanLogado = document.createElement("span");
 let texto = document.createTextNode("Usuário: " +logado);
@@ -17,6 +14,17 @@ spanLogado.setAttribute("id", "usuario_logado");
 
 let element = document.getElementById("logo");
 element.appendChild(spanLogado);
+
+let buttonLogout = document.createElement("button");
+buttonLogout.appendChild(document.createTextNode("Logout"));
+buttonLogout.setAttribute("id","buttonLogout");
+buttonLogout.setAttribute("value","Logout");
+buttonLogout.setAttribute("onclick","logout()");
+
+element.appendChild(buttonLogout);
+
+let email = document.getElementById("email").value = logado; //deixa email ja preenchido
+
 
 function alterarCadastro()
 {
@@ -50,8 +58,6 @@ function alterarCadastro()
 		//se browser suporta storage
 		if (typeof(Storage) !== "undefined") 
 		{
-			let logado = localStorage.getItem("atualLogado");	//recupera pessoa logada
-			
 			let atualiza = store.openCursor();					//abre cursor para atualizar
 			atualiza.onsuccess = (event) => 
 			{
@@ -77,6 +83,7 @@ function alterarCadastro()
 							//dados.email = email;
 							//localStorage.setItem("atualLogado", email); //troca email logado tb
 						//}
+						
 						if(telefone!=="")
 							dados.telefone = telefone;
 						if(endereco!=="")
@@ -87,7 +94,6 @@ function alterarCadastro()
 							dados.estado = estado;
 						if(nome=="" && (email==""  || email == logado) && telefone=="" && endereco=="" && cidade=="" && estado=="") 
 						{
-							document.getElementById("email").value = localStorage.getItem("atualLogado");
 							alert("Pelo menos um dos campos devem ser preechidos");
 							return;
 						}						
@@ -95,13 +101,14 @@ function alterarCadastro()
 						//atualiza banco
 						console.log("Novo nome: "+dados.nome);
 						let atualizaBD = cursor.update(dados);
-						atualizaBD.onsuccess = () => {alert("Os dados foram atualizados com sucesso");};
+						atualizaBD.onsuccess = () => {alert("Os dados foram atualizados com sucesso" + dados.nome);};
 						
 						atualizaBD.onerror = () => {alert("Não foi possível atualizar o Banco de Dados");};						
 					}
 					//nao encontrou ninguem com o email logado, no banco
 					else {alert("Não foi possível encontrar o usuário do email "+logado);}
 				}
+				cursor.continue();
 				//nao conseguiu reabrir o banco para o update
 				else {alert("Não foi possível reabrir o banco;");}	
 			};			
@@ -111,6 +118,13 @@ function alterarCadastro()
 		//encerra banco
 		tx.oncomplete = () => {db.close();}	
 	};
+}
+
+function logout() {
+	if (typeof(Storage) !== "undefined") 
+			localStorage.removeItem("atualLogado");	//deleta o token da pessoa logada
+	window.location.href="../Index/index.html";
+	return;
 }
 
 //povoa o calendario	

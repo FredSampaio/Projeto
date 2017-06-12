@@ -94,6 +94,12 @@ body {
 	padding: 10px 10px 10px 10px;
 }
 
+#buttonLogout {
+    float: right;
+    margin-top: 70px;
+    margin-right: -160px
+}
+
 /*todos os blocos que alteram o comportamento de nav foram baseados no presente em https://www.w3schools.com/css/css_navbar.asp*/
 nav {
     background-color: rgba(255, 255, 255, 1);
