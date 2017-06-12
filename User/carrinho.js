@@ -9,11 +9,13 @@
 povoarCarrinho();
 
 function pagar() {
+	//como a funcionalidade não é implementada, o pagamento do usuário é sempre recusado
 	alert("O seu pagamento foi recusado pela operadora do cartão. Por favor, "+
 			"entre em contato com sua operadora ou tente novamente com outro cartão");
 }
 
 function finalizar() {
+	//ao apertar o botão, os dados para pagamento são exibidos
 	document.getElementById("finalizar").innerHTML='\
 			<div class="formulario">\
 				<div class="formulario">\
@@ -40,13 +42,15 @@ function finalizar() {
 }
 
 function povoarCarrinho() {
-	
+	//função que exibe todos os produtos do carrinho
 	if(!window.indexedDB) {
+		//resta se o indexedDB está disponível
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco carrinhoDB
 	let request=indexedDB.open("carrinhoDB", 2);
 
 	request.onerror=(event)=> {
@@ -54,12 +58,15 @@ function povoarCarrinho() {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//se não abre, o banco é criado
 		let db=request.result;
 		let store=db.createObjectStore("produtos", {keyPath: "id"});
 	};
-			
+	
+	//limpa tudo que está no carrinho
 	document.getElementById("carrinho").innerHTML='';
 	
+	//preço que vai ser incrementado pra dar o valor da compra
 	let preco_total=0;
 
 	request.onsuccess=(event)=> {
@@ -68,11 +75,13 @@ function povoarCarrinho() {
 		let store=tx.objectStore("produtos");
 		
 		store.openCursor().onsuccess=(event)=> {
+			//abre um cursor com todos os produtos no carrinho
 			let cursor=event.target.result;
 			
 			if(cursor) {
 				
 				if(cursor.value.quantidade!=0) {
+					//exibe apenas os produtos com quantidade selecionada maior que zero
 					document.getElementById("carrinho").innerHTML+='\
 						<div class="produto-carrinho">\
 							<div class="produto">\
@@ -100,6 +109,7 @@ function povoarCarrinho() {
 				cursor.continue();
 			}
 			else {
+				//quando encerra o cursor, exibe o preço final e permite finalizar
 				document.getElementById("carrinho").innerHTML+='\
 					<div id="total"><!--soma de todos os produtos do carrinho-->\
 						<p>Total geral:</p>\
@@ -112,12 +122,15 @@ function povoarCarrinho() {
 }
 
 function adicionar(id, url, nome, quantidade_disponivel, preco) {	
+	//adiciona produtos no carrinho
 	if(!window.indexedDB) {
+		//testa se o indexedDB está disponível
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco do carrinho
 	let request=indexedDB.open("carrinhoDB", 2);
 
 	request.onerror=(event)=> {
@@ -125,6 +138,7 @@ function adicionar(id, url, nome, quantidade_disponivel, preco) {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//se o banco não existe, é criado
 		let db=request.result;
 		let store=db.createObjectStore("produtos", {keyPath: "id"});
 	};
@@ -134,21 +148,27 @@ function adicionar(id, url, nome, quantidade_disponivel, preco) {
 		let tx=db.transaction("produtos", "readwrite");
 		let store=tx.objectStore("produtos");
 		
+		//procura o produto com o id passado
 		let getProduto=store.get(id);
 		let quantidade;
 		
 		getProduto.onsuccess=()=> {
 			try {
+				//se o produto já está no banco, sua quantidade é selecionada
 				quantidade=getProduto.result.quantidade;
 			}
 			catch(err) {
+				//se não foi encontrado, a quantidade é zero
 				quantidade=0;
 			}
 			if(quantidade+1<=quantidade_disponivel) {
+				///adiciona ou atualiza o produto com a nova quantidade
 				store.put({id: id, quantidade: (quantidade+1), quantidade_disponivel: quantidade_disponivel, url: url, nome: nome, preco: preco});
+				//exibe o carrinho novamente
 				povoarCarrinho();
 			}
 			else {
+				//caso não haja mais ítens do produto disponíveis
 				alert("A quantidade desejada não está disponível");
 			}
 		}
@@ -160,12 +180,14 @@ function adicionar(id, url, nome, quantidade_disponivel, preco) {
 }
 
 function remover(id, url, nome, quantidade_disponivel, preco) {	
+	//remove uma unidade do produto no carrinho
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco do carrinho
 	let request=indexedDB.open("carrinhoDB", 2);
 
 	request.onerror=(event)=> {
@@ -173,6 +195,7 @@ function remover(id, url, nome, quantidade_disponivel, preco) {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//se o banco não puder ser aberto, é criado
 		let db=request.result;
 		let store=db.createObjectStore("produtos", {keyPath: "id"});
 	};
@@ -182,17 +205,21 @@ function remover(id, url, nome, quantidade_disponivel, preco) {
 		let tx=db.transaction("produtos", "readwrite");
 		let store=tx.objectStore("produtos");
 		
+		//busca o produto com o id desejado
 		let getProduto=store.get(id);
 		let quantidade;
 		
 		getProduto.onsuccess=()=> {
 			try {
+				//se já estava no carrinho, busca a quantidade que possuia
 				quantidade=getProduto.result.quantidade;
 			}
 			catch(err) {
+				//se não estava, a quantidade é zero
 				quantidade=0;
 			}
 			if(quantidade>0) {
+				//salva a nova quantidade
 				store.put({id: id, quantidade: (quantidade-1), quantidade_disponivel: quantidade_disponivel, url: url, nome: nome, preco: preco});
 				povoarCarrinho();
 			}

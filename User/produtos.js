@@ -1,7 +1,15 @@
-﻿
+﻿//parte do IndexedDB foi baseada no tutorial da MDN,
+//disponível em https://developer.mozilla.org/pt-BR/docs/IndexedDB/Usando_IndexedDB
+//parte do IndexedDB foi baseada nesse exemplo:
+//https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
+//parte do IndexedDB foi baseada nos slides de aula
+//a parte de cursores foi baseada em:
+//https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor
+
 exibir_produtos();
 
 function popular_produtos() {		
+	//dados de produtos para teste da funcionalidade
 	let dados_produtos=`[
 		{"url":"Produtos/racao-golden.jpg", "nome":"Ração Golden 1 Kg", "quantidade":5, "vendidos":0, "descricao":"Produto de teste. Excelente ração para cachorro, 1 Kg.", "preco":19.90},
 		{"url":"Produtos/racao-pedigree.jpg", "nome":"Ração Pedigree 1 Kg", "quantidade":4, "vendidos":1, "descricao":"Produto de teste. Excelente ração para cachorro, 1 Kg.", "preco":21.30},
@@ -19,11 +27,13 @@ function popular_produtos() {
 
 
 	if(!window.indexedDB) {
+		//testa se o indexedDB está disponível
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco de produtos
 	let request=indexedDB.open("produtosDB", 2);
 
 	request.onerror=(event)=> {
@@ -31,6 +41,7 @@ function popular_produtos() {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//se o banco não existir, é criado
 		let db=request.result;
 		let store=db.createObjectStore("produtos", {keyPath: "id", autoIncrement: true});
 	};
@@ -40,9 +51,11 @@ function popular_produtos() {
 		let tx=db.transaction("produtos", "readwrite");
 		let store=tx.objectStore("produtos");
 		
+		//cria um vetor com os objetos de teste
 		let produtos=JSON.parse(dados_produtos);
 
 		for(let i=0;i<produtos.length;i++){
+			//percorre o vetor e adiciona todos os produtos no banco
 			let obj=produtos[i];
 			let teste=store.put({url: obj.url, nome: obj.nome, quantidade: obj.quantidade, vendidos: obj.vendidos, descricao: obj.descricao, preco: obj.preco});
 		}
@@ -55,15 +68,19 @@ function popular_produtos() {
 }
 
 function exibir_produtos() {	
+	//inclui todos os produtos no DOM
 
+	//primeiro limpa todos os produtos, para evitar repetição
 	document.getElementById("produtos").innerHTML='';
 
 	if(!window.indexedDB) {
+		//testa se o indexedDB está disponível
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco de produtos
 	let request=indexedDB.open("produtosDB", 2);
 
 	request.onerror=(event)=> {
@@ -71,6 +88,7 @@ function exibir_produtos() {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//se não encontrar o banco, ele é criado
 		let db=request.result;
 		let store=db.createObjectStore("produtos", {keyPath: "id", autoIncrement: true});
 	};
@@ -81,9 +99,11 @@ function exibir_produtos() {
 		let store=tx.objectStore("produtos");
 		
 		store.openCursor().onsuccess=(event)=> {
+			//abre um cursor com todos os produtos no banco
 			let cursor=event.target.result;
 			
 			if(cursor) {	
+			//adiciona todos os produtos no DOM
 				document.getElementById("produtos").innerHTML+='\
 							<div class="produto">\
 								<img onclick="alert(\''+cursor.value.descricao+'\')" src="'+cursor.value.url+'" alt="'+cursor.value.nome+'" style="width:160px;height:160px">\

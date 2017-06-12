@@ -1,4 +1,13 @@
-﻿function popular_animais() {		
+﻿//parte do IndexedDB foi baseada no tutorial da MDN,
+//disponível em https://developer.mozilla.org/pt-BR/docs/IndexedDB/Usando_IndexedDB
+//parte do IndexedDB foi baseada nesse exemplo:
+//https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b
+//parte do IndexedDB foi baseada nos slides de aula
+//a parte de cursores foi baseada em:
+//https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor
+
+function popular_animais() {		
+	//dados de animais para teste da funcionalidade
 	let dados_animais=`[
 		{"url":"Animais/fifi.jpg", "nome":"Fifi", "id":1, "raca":"Poodle", "idade":3},
 		{"url":"Animais/rex.jpg", "nome":"Rex", "id":2, "raca":"Pit Bull", "idade":2},
@@ -9,19 +18,21 @@
 		{"url":"Animais/haroldo.jpg", "nome":"Haroldo", "id":7, "raca":"Furão", "idade":8}
 	]`;
 
-	if(!window.indexedDB) {
+	if(!window.indexedDB) {//tesra o indexedDB
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco de animais
 	let request=indexedDB.open("animaisDB", 2);
 
 	request.onerror=(event)=> {
 		alert("Erro ao utilizar IndexedDB.");
 	};
 
-	request.onupgradeneeded=(event)=> { 
+	request.onupgradeneeded=(event)=> {
+		//caso não exista o banco, ele é criado
 		let db=request.result;
 		let store=db.createObjectStore("animais", {keyPath: "id", autoIncrement: true});
 	};
@@ -31,8 +42,10 @@
 		let tx=db.transaction("animais", "readwrite");
 		let store=tx.objectStore("animais");
 		
+		//salva os dados de teste de animais em um vetor
 		let animais=JSON.parse(dados_animais);
 
+		//acessa as posições do vetor e salva todos os animais no banco
 		for(let i=0;i<animais.length;i++){
 			let obj=animais[i];
 			let teste=store.put({url: obj.url, nome: obj.nome, raca: obj.raca, idade: obj.idade});
@@ -45,16 +58,18 @@
 	exibir_animais();
 }
 
-function exibir_animais() {	
+function exibir_animais() {	//função que lista todos os aniamis, inserindo no DOM
 
-	document.getElementById("animais").innerHTML='';
+	document.getElementById("animais").innerHTML='';//apaga tudo que tem na seção, para não adicionar animais repetidos
 
 	if(!window.indexedDB) {
+		//testa o indexedDB
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 
 	let db;
+	//tenta abrir o banco aniamisDB
 	let request=indexedDB.open("animaisDB", 2);
 
 	request.onerror=(event)=> {
@@ -62,6 +77,7 @@ function exibir_animais() {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//caso o banco não exista, ele é criado
 		let db=request.result;
 		let store=db.createObjectStore("animais", {keyPath: "id"});
 	};
@@ -72,9 +88,11 @@ function exibir_animais() {
 		let store=tx.objectStore("animais");
 		
 		store.openCursor().onsuccess=(event)=> {
+			//abre um cursor com todos os animais no banco
 			let cursor=event.target.result;
 			
 			if(cursor) {
+				//percorre o cursor e adiciona cada animal no DOM
 							
 				document.getElementById("animais").innerHTML+='\
 					<div class="animal">\
@@ -105,11 +123,14 @@ function exibir_animais() {
 }
 
 function adicionar_animal() {	
+	//permite a adição de animais
 	if(!window.indexedDB) {
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
 	
+	//como não é possível trabalhar com os arquivos, usa-se uma imagem falsa
+	//sempre que um animal é adicionado, sua foto é uma imagem de erro
 	let url="Animais/error.jpg";
 	let nome=document.getElementById("nome_animal").value;
 	let raca=document.getElementById("raca_animal").value;
@@ -121,6 +142,7 @@ function adicionar_animal() {
 	}
 
 	let db;
+	//tenta abrir o banco animaisDB
 	let request=indexedDB.open("animaisDB", 2);
 
 	request.onerror=(event)=> {
@@ -128,6 +150,7 @@ function adicionar_animal() {
 	};
 
 	request.onupgradeneeded=(event)=> { 
+		//se o banco não existir, é criado
 		let db=request.result;
 		let store=db.createObjectStore("animais", {keyPath: "id", autoIncrement: true});
 	};
@@ -137,6 +160,7 @@ function adicionar_animal() {
 		let tx=db.transaction("animais", "readwrite");
 		let store=tx.objectStore("animais");
 		
+		//adiciona o animal no banco
 		let teste=store.put({url: url, nome: nome, raca: raca, idade: idade});
 		
 
@@ -144,6 +168,7 @@ function adicionar_animal() {
 			db.close();
 		};
 	};
+	//refaz a lista de animais
 	exibir_animais();
 }
 

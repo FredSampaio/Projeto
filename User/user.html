@@ -61,10 +61,14 @@
 						</div>
 					</div>
 					<div class="animal" id="animais"><!--os animais do usuário-->
-						<button onclick="popular_animais()" style="margin: 20px 20px 20px 20px; color: red">Insira animais para teste</button>
+						<!--São inseridos pelo javascript, conforme o usuário cadastra novos animais-->
+						<button onclick="popular_animais()" style="margin: 20px 20px 20px 20px;
+						color: red">Insira animais para teste</button>
+						<!--O botão serve pra cadastrar animais de teste-->
 					</div>
 				</div>
 				<div id="editar" class="tab-content">
+					<!--Edição do cadastro pelo usuário-->
 					<form>
 						<div class="formulario">
 							<div class="formulario">
@@ -127,6 +131,7 @@
 					</form>
 				</div>
 				<div id="agendar" class="tab-content">
+					<!--agendamento de serviços-->
 					<form>
 						<div class="formulario">
 							<div class="formulario">
@@ -152,10 +157,10 @@
 					</form>
 				</div>
 				<div id="carrinho" class="tab-content">					
-					
+					<!--os produtos são adicionados conforme o usuário os seleciona-->
 				</div>
 				<div id="finalizar" style="text-align: center;">
-				
+					<!--a parte de finalização é adicionada quando o usuário aperta o botão-->
 				</div>
 				<div id="comprar" class="tab-content">
 				<!--para funcionar o comportamento de abas, a aba a ser aberta por padrão tem que vir por último-->
@@ -163,7 +168,9 @@
 					<!--produtos adicionados por javascript-->
 					</div>
 					<div  class="produto">
-						<button onclick="popular_produtos()" style="margin: 20px 20px 20px 20px; color: red">Insira produtos para teste</button>
+						<button onclick="popular_produtos()" style="margin: 20px 20px 20px 20px;
+						color: red">Insira produtos para teste</button>
+						<!--permite a adição de produtos para testar a funcionalidade-->
 					</div>
 				</div>
 				<div id="calendar" class="tab-content">
