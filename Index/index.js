@@ -5,6 +5,7 @@ let indexedDB = window.indexedDB ||
 				window.shimIndexedDB;
 
 function cadastrar() {
+	//faz o cadastro de novos usuários
 	let nome=document.getElementById("nome").value;
 	if(nome=="") {
 		alert("Insira seu nome.");
@@ -47,6 +48,7 @@ function cadastrar() {
 	}
 
 	if(!window.indexedDB) {
+		//verifica se o indexedDB está disponível
 		console.log("Seu navegador não suporta indexedDB.");
 		return;
 	}
@@ -96,6 +98,7 @@ function login() {
 	}
 	
 	if(email=="admin" && senha=="admin") {
+		//se o user e a senha forem admin, quer dizer que é o administrador padrão
 		window.location.href="../Admin/admin-cadastrar.html";
 		return;
 	}
@@ -143,6 +146,7 @@ function login() {
 					alert("Seu navegador não suporte Local Storage");
 					return;
 				}
+				//direciona para a página certa, dependendo do tipo de usuário
 				if(getUser.result.tipo=="user") {
 					window.location.href="../User/user.html";
 				}
