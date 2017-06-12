@@ -151,7 +151,7 @@ function apagar_produto(id) {
 	if(arguments.length==0) {
 		//só argumento quando é chamada ao clicar na lista
 		//se não há argumentos, é utilizado o id entrado pelo usuário		
-		let id=+document.getElementById("apagar_produto").value;
+		id=+document.getElementById("id_apagar").value;
 		
 		if(id=="") {
 			alert("Insira o ID do produto");
@@ -179,6 +179,7 @@ function apagar_produto(id) {
 		let store=tx.objectStore("produtos");
 		
 		//apaga o objeto
+		console.log(id);
 		let apagar=store.delete(id);
 
 		apagar.onsuccess = (event) =>{
