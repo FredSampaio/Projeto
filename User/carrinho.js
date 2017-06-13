@@ -16,7 +16,8 @@ function pagar() {
 
 function finalizar() {
 	//ao apertar o botão, os dados para pagamento são exibidos
-	document.getElementById("finalizar").innerHTML='\
+	document.getElementById("carrinho").innerHTML+='\
+		<div id="finalizar" style="text-align: center;">\
 			<div class="formulario">\
 				<div class="formulario">\
 					<p>Número do cartão de crédito:</p>\
@@ -37,7 +38,9 @@ function finalizar() {
 				<div class="formulario">\
 					<button onclick="pagar()">Pagar</button>\
 				</div>\
-			</div>';
+			</div>\
+		</div>';
+	document.getElementById("botao_finalizar").disabled=true;
 	
 }
 
@@ -114,7 +117,7 @@ function povoarCarrinho() {
 					<div id="total"><!--soma de todos os produtos do carrinho-->\
 						<p>Total geral:</p>\
 						<p id="total">R$'+preco_total.toFixed(2).toString().replace('.', ',')+'</p><br>\
-						<button type="button" onclick="finalizar()">Finalizar</button>\
+						<button type="button" id="botao_finalizar" onclick="finalizar()">Finalizar</button>\
 					</div>';
 			}
 		};

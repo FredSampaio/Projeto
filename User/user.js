@@ -108,9 +108,9 @@ function alterarCadastro()
 					//nao encontrou ninguem com o email logado, no banco
 					else {alert("Não foi possível encontrar o usuário do email "+logado);}
 				}
-				cursor.continue();
 				//nao conseguiu reabrir o banco para o update
 				else {alert("Não foi possível reabrir o banco;");}	
+				cursor.continue();
 			};			
 		}
 		else {alert("Seu navegador não suporte Local Storage");}
