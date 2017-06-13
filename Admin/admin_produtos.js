@@ -242,7 +242,7 @@ function atualizarProd() {
 		let getProduto=store.get(id);
 				
 		getProduto.onsuccess=()=> {
-
+			//os dados em branco permanecerão iguais
 			if(nome=="")
 				nome=getProduto.result.nome;
 			if(descricao=="")
