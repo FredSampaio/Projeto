@@ -219,66 +219,49 @@ function atualizarProd() {
 		let tx=db.transaction("produtos", "readwrite");
 		let store=tx.objectStore("produtos");
 
-		let atualiza = store.openCursor();					//abre cursor para atualizar
-		atualiza.onsuccess = (event) => 
+		let id=+document.getElementById("id").value;
+		let nome=document.getElementById("nome").value;
+		let descricao=document.getElementById("descricao").value;
+		let preco=+document.getElementById("preco").value;
+		let quantidade=+document.getElementById("quantidade").value;
+		let vendidos=+document.getElementById("vendidos").value;
+		
+		if(id=="")
 		{
-			let cursor = event.target.result;
-			if(cursor) {
-				console.log(cursor);
-
-				let id=document.getElementById("id").value;
-				console.log(id);
-				let nome=document.getElementById("nome").value;
-				let descricao=document.getElementById("descricao").value;
-				let preco=document.getElementById("preco").value;
-				let quantidade=document.getElementById("quantidade").value;
-				let vendidos=document.getElementById("vendidos").value;
+			alert("O campo ID deve ser preenchido!");
+			return;
+		}
+		
+		if(nome=="" && descricao=="" && preco=="" && quantidade=="" && vendidos=="") 
+		{
+			alert("Pelo menos um dos campos devem ser preechidos");
+			return;	
+		}
+		
+		//procura o produto com o id passado
+		let getProduto=store.get(id);
 				
-				if(id=="")
-				{
-					alert("O campo ID deve ser preenchido!");
-					return;
-				}
+		getProduto.onsuccess=()=> {
 
+			if(nome=="")
+				nome=getProduto.result.nome;
+			if(descricao=="")
+				descricao=getProduto.result.descricao;
+			if(preco=="")
+				preco=getProduto.result.preco;
+			if(quantidade=="")
+				quantidade=getProduto.result.quantidade;
+			if(vendidos=="")
+				vendidos=getProduto.result.vendidos;
+			url=getProduto.result.url;
+			store.put({id: id, url: url, nome: nome, quantidade: quantidade, 
+				vendidos: vendidos, descricao: descricao, preco: preco});			
 
-				if(cursor.value.id == id) 
-				{
-					console.log("Entrei aqui porra id: "+id);
-					//se alguma dos inputs estiverem vazios, nao alterar nada no banco
-					if(nome!=="")
-						cursor.value = nome;
-					if(descricao!=="")
-						cursor.value = descricao;
-					if(preco!=="")
-						cursor.value = preco;
-					if(quantidade!=="")
-						cursor.value = quantidade;
-					if(vendidos!=="")
-						cursor.value = vendidos;				
-
-					if(nome=="" && descricao=="" && preco=="" && quantidade=="" && vendidos=="") 
-					{
-						alert("Pelo menos um dos campos devem ser preechidos");
-						return;	
-					}	
-
-					//atualiza banco
-					console.log("ID: "+id);
-					let atualizaBD = cursor.update(cursor.value);
-					atualizaBD.onsuccess = () => {alert("Os dados foram atualizados com sucesso");};
-					
-					atualizaBD.onerror = () => {alert("Não foi possível atualizar o Banco de Dados");};
-				}
-				cursor.continue();
-				
-			}
-			//nao conseguiu reabrir o banco para o update
-			else {alert("Não foi possível reabrir o banco;");}
 		};
 
-		//encerra banco
-		tx.oncomplete = () => {db.close();}	
-	}
+		tx.oncomplete = () => {db.close();};
+	};
+	
 }
 
 function relatorio_produtos() {
